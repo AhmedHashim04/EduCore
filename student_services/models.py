@@ -35,13 +35,12 @@ class Enrollment(models.Model):
         return f"{self.student} in {self.course_offering}"
 
 class StudentProfile(models.Model):
-    student = models.OneToOneField(User, on_delete=models.CASCADE, limit_choices_to={'user_type': 3})
+    student = models.OneToOneField(User, on_delete=models.CASCADE, limit_choices_to={'user_type': 3},related_name='profile')
     program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True, blank=True)
     enrollment_date = models.DateField()
     expected_graduation = models.DateField()
     current_semester = models.PositiveSmallIntegerField(default=1)
-    advisor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
-                              limit_choices_to={'user_type': 2})
+    advisor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,limit_choices_to={'user_type': 2}, related_name='advisor')
     gpa = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)
     completed_credits = models.PositiveSmallIntegerField(default=0)
     
