@@ -40,7 +40,6 @@ class Semester(models.Model):
         ('Spring', 'Spring'),
         ('Summer', 'Summer'),
     )
-    
     year = models.PositiveSmallIntegerField()
     semester = models.CharField(max_length=10, choices=SEMESTER_CHOICES)
     start_date = models.DateField()

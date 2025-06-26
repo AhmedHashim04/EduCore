@@ -3,9 +3,9 @@ from .models import Enrollment, StudentProfile, Attendance
 
 @admin.register(Enrollment)
 class EnrollmentAdmin(admin.ModelAdmin):
-    list_display = ('student', 'course_offering', 'enrollment_date', 'grade', 'is_active')
-    search_fields = ('student__username', 'course_offering__course__title')
-    list_filter = ('course_offering', 'grade', 'is_active', 'withdrawn')
+    list_display = ('student', 'course', 'enrollment_date', 'grade', 'is_active')
+    search_fields = ('student__username', 'course__course__title')
+    list_filter = ('course', 'grade', 'is_active', 'withdrawn')
 
 @admin.register(StudentProfile)
 class StudentProfileAdmin(admin.ModelAdmin):
@@ -15,6 +15,6 @@ class StudentProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Attendance)
 class AttendanceAdmin(admin.ModelAdmin):
-    list_display = ('student', 'course_offering', 'date', 'status')
-    search_fields = ('student__username', 'course_offering__course__title')
-    list_filter = ('course_offering', 'status', 'date')
+    list_display = ('student', 'course', 'date', 'status')
+    search_fields = ('student__username', 'termcourse__course__title')
+    list_filter = ('course', 'status', 'date')

@@ -9,7 +9,7 @@ class User(AbstractUser):
         (3, 'Student'),
         (4, 'Staff'),
     )
-    
+    email = models.EmailField(unique=True)
     user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, default=3)
     profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)

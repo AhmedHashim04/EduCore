@@ -1,16 +1,13 @@
-from django.urls import path
+from django.urls import path, include
 from rest_framework_simplejwt.views import TokenRefreshView
 from .views import (
-    UserRegistrationView,
-    CustomTokenObtainPairView,
     ProfileView,
-    UserListView
+    
 )
-
+import djoser
 urlpatterns = [
-    path('register/', UserRegistrationView.as_view(), name='register'),
-    path('token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('', include('djoser.urls')),
+    path('', include('djoser.urls.authtoken')),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('profile/', ProfileView.as_view(), name='profile'),
-    path('users/', UserListView.as_view(), name='user-list'),
 ]

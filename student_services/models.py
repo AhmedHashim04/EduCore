@@ -1,7 +1,7 @@
 from django.db import models
 from users.models import User
 from academics.models import Program
-from courses.models import CourseOffering
+from courses.models import TermCourse
 
 class Enrollment(models.Model):
     GRADE_CHOICES = (
@@ -21,7 +21,7 @@ class Enrollment(models.Model):
     )
     
     student = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'user_type': 3})
-    course_offering = models.ForeignKey(CourseOffering, on_delete=models.CASCADE)
+    course = models.ForeignKey(TermCourse, on_delete=models.CASCADE)
     enrollment_date = models.DateTimeField(auto_now_add=True)
     grade = models.CharField(max_length=2, choices=GRADE_CHOICES, null=True, blank=True)
     is_active = models.BooleanField(default=True)
@@ -29,10 +29,10 @@ class Enrollment(models.Model):
     withdrawn_date = models.DateTimeField(null=True, blank=True)
     
     class Meta:
-        unique_together = ('student', 'course_offering')
+        unique_together = ('student', 'course')
     
     def __str__(self):
-        return f"{self.student} in {self.course_offering}"
+        return f"{self.student} in {self.course}"
 
 class StudentProfile(models.Model):
     student = models.OneToOneField(User, on_delete=models.CASCADE, limit_choices_to={'user_type': 3},related_name='profile')
@@ -48,7 +48,7 @@ class StudentProfile(models.Model):
         return f"{self.student}'s academic profile"
 
 class Attendance(models.Model):
-    course_offering = models.ForeignKey(CourseOffering, on_delete=models.CASCADE)
+    course = models.ForeignKey(TermCourse, on_delete=models.CASCADE)
     student = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'user_type': 3})
     date = models.DateField()
     status = models.CharField(max_length=1, choices=(
@@ -60,7 +60,7 @@ class Attendance(models.Model):
     notes = models.TextField(null=True, blank=True)
     
     class Meta:
-        unique_together = ('course_offering', 'student', 'date')
+        unique_together = ('course', 'student', 'date')
     
     def __str__(self):
         return f"{self.student} - {self.date} - {self.get_status_display()}"

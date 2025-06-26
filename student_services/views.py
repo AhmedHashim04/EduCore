@@ -11,7 +11,7 @@ class EnrollmentListView(generics.ListCreateAPIView):
     serializer_class = EnrollmentSerializer
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['student', 'course_offering', 'is_active', 'withdrawn']
+    filterset_fields = ['student', 'course', 'is_active', 'withdrawn']
 
 class EnrollmentDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Enrollment.objects.all()
@@ -34,7 +34,7 @@ class AttendanceListView(generics.ListCreateAPIView):
     serializer_class = AttendanceSerializer
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['student', 'course_offering', 'date', 'status']
+    filterset_fields = ['student', 'course', 'date', 'status']
 
 class AttendanceDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Attendance.objects.all()

@@ -1,37 +1,33 @@
 from rest_framework import generics, permissions
-from .models import Course, CourseOffering
-from .serializers import CourseSerializer, CourseOfferingSerializer
+from .models import  TermCourse
+from .serializers import  TermCourseSerializer
 from academics.models import Semester
 from django_filters.rest_framework import DjangoFilterBackend
+from .permissions import IsCourseInstructor, IsCourseStudent, IsCourseStaff
 
-class CourseListView(generics.ListCreateAPIView):
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
+class CourseListView(generics.ListAPIView):
+    serializer_class = TermCourseSerializer
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['department', 'is_core', 'is_active']
-    search_fields = ['code', 'title']
-
-class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-class CourseOfferingListView(generics.ListCreateAPIView):
-    serializer_class = CourseOfferingSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['course', 'semester', 'instructor', 'is_active']
+    filterset_fields = ['course', 'course__department', 'course__is_core', 'semester', 'instructor', 'is_active',]
+    search_fields = ['course']
 
     def get_queryset(self):
-        queryset = CourseOffering.objects.all()
+        queryset = TermCourse.objects.all()
         semester_id = self.request.query_params.get('semester_id')
         if semester_id:
             semester = Semester.objects.get(id=semester_id)
             queryset = queryset.filter(semester=semester)
         return queryset
 
-class CourseOfferingDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = CourseOffering.objects.all()
-    serializer_class = CourseOfferingSerializer
-    permission_classes = [permissions.IsAuthenticated]
+class CourseDetailView(generics.RetrieveUpdateAPIView):
+    queryset = TermCourse.objects.all()
+    serializer_class = TermCourseSerializer
+    lookup_field = 'slug'
+    permission_classes = [
+        IsCourseInstructor,
+        IsCourseStudent,
+        IsCourseStaff,
+    ]
+    
+

@@ -1,15 +1,19 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-
+from djoser.serializers import (
+            UserCreateSerializer as BaseUserCreateSerializer,
+            UserSerializer as BaseUserSerializer
+            )
 User = get_user_model()
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
+class UserCreateSerializer(BaseUserCreateSerializer):
+
+    class Meta(BaseUserCreateSerializer.Meta):
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 
-                    'user_type', 'profile_picture', 'phone_number', 'date_of_birth', 'password']
+        fields = ('id', 'username', 'email', 'password', 'user_type', 'profile_picture',
+                    'phone_number', 'address', 'date_of_birth', 'bio')
         extra_kwargs = {
             'password': {'write_only': True},
             'user_type': {'default': 'student'}
@@ -31,22 +35,13 @@ class UserSerializer(serializers.ModelSerializer):
         if not value[0:3] in ['010', '011', '012', '015']:
             raise serializers.ValidationError("Phone number must be Egyptian (starting with 010, 011, 012, or 015).")
         return value
-    
-    def create(self, validated_data):
-        password = validated_data.pop('password')
-        user = User(**validated_data)
-        user.set_password(password)
-        user.save()
-        return user
+
+class CustomUserSerializer(BaseUserSerializer):
+    class Meta(BaseUserSerializer.Meta):
+        model = User
+        fields = ('id', 'username', 'email', 'user_type', 'profile_picture', 'phone_number', 'address', 'date_of_birth', 'bio')
 
 
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-        token['user_type'] = user.user_type
-        token['username'] = user.username
-        return token
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -55,3 +50,4 @@ class ProfileSerializer(serializers.ModelSerializer):
                     'user_type', 'profile_picture', 'phone_number', 
                     'address', 'date_of_birth', 'bio']
         read_only_fields = ['id', 'username', 'user_type']
+        

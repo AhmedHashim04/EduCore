@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
 
+    'djoser',
+    
     'users',
     'academics',
     'assessment',
@@ -52,6 +54,26 @@ INSTALLED_APPS = [
     'professor_dashboard',
     'student_services',
 ]
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    # 'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    # 'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    
+    'ACCESS_TOKEN_LIFETIME': timedelta(years=2), #in Test
+    'REFRESH_TOKEN_LIFETIME': timedelta(years=7), #in Test
+}
+
+DJOSER = {
+    'LOGIN_FIELD': 'email', 
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'SERIALIZERS': {
+        'user': 'users.serializers.CustomUserSerializer',
+        'current_user': 'users.serializers.CustomUserSerializer',
+        'user_create': 'users.serializers.UserCreateSerializer',
+    },
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
