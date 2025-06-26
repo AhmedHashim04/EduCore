@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from djoser.serializers import (
             UserCreateSerializer as BaseUserCreateSerializer,
             UserSerializer as BaseUserSerializer
@@ -23,7 +22,7 @@ class UserCreateSerializer(BaseUserCreateSerializer):
         if value == 'admin':
             raise serializers.ValidationError("You are not allowed to choose 'admin' as user type.")
         return value
-    
+
     def validate_date_of_birth(self, value):
         if value > '2009-01-01':
             raise serializers.ValidationError("You must be at least 18 years old to register.")

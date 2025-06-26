@@ -1,15 +1,34 @@
-from django.urls import path
+# urls.py (student)
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from .views import (
-    EnrollmentListView, EnrollmentDetailView,
-    StudentProfileListView, StudentProfileDetailView,
-    AttendanceListView, AttendanceDetailView
+    StudentDashboardView,
+    StudentCourseViewSet,
+    StudentAssignmentViewSet,
+    StudentSubmissionViewSet,
+    StudentEnrollmentViewSet,
+    StudentGradeViewSet,
+    StudentAttendanceViewSet,
+    AnnouncementViewSet,
+    StudentResourceViewSet
 )
 
+router = DefaultRouter()
+router.register(r'courses', StudentCourseViewSet, basename='student-course')
+router.register(r'assignments', StudentAssignmentViewSet, basename='student-assignment')
+router.register(r'submissions', StudentSubmissionViewSet, basename='student-submission')
+router.register(r'grades', StudentGradeViewSet, basename='student-grade')
+router.register(r'attendance', StudentAttendanceViewSet, basename='student-attendance')
+router.register(r'announcements', AnnouncementViewSet, basename='student-announcement')
+router.register(r'resources', StudentResourceViewSet, basename='student-resource')
+
 urlpatterns = [
-    path('enrollments/', EnrollmentListView.as_view(), name='enrollment-list'),
-    path('enrollments/<int:pk>/', EnrollmentDetailView.as_view(), name='enrollment-detail'),
-    path('profiles/', StudentProfileListView.as_view(), name='profile-list'),
-    path('profiles/<int:pk>/', StudentProfileDetailView.as_view(), name='profile-detail'),
-    path('attendance/', AttendanceListView.as_view(), name='attendance-list'),
-    path('attendance/<int:pk>/', AttendanceDetailView.as_view(), name='attendance-detail'),
+    path('dashboard/', StudentDashboardView.as_view(), name='student-dashboard'),
+    path('enrollment/', StudentEnrollmentViewSet.as_view({
+        'post': 'enroll'
+    }), name='student-enroll'),
+    path('enrollment/<int:pk>/withdraw/', StudentEnrollmentViewSet.as_view({
+        'post': 'withdraw'
+    }), name='student-withdraw'),
+    path('', include(router.urls)),
 ]

@@ -26,7 +26,7 @@ urlpatterns = [
     path('api/student-services/', include('student_services.urls')),
     path('api/professor/', include('professor_dashboard.urls')),
     path('api/notifications/', include('notifications.urls')),
-    
+
     # Documentation
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('swagger.json', schema_view.without_ui(cache_timeout=0), name='schema-json'),
