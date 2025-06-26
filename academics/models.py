@@ -6,7 +6,7 @@ class Department(models.Model):
     code = models.CharField(max_length=10, unique=True)
     description = models.TextField(null=True, blank=True)
     head_of_department = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, 
-                                         limit_choices_to={'user_type': 2})
+                                        limit_choices_to={'user_type': 2})
     established_date = models.DateField()
     website = models.URLField(null=True, blank=True)
     
@@ -20,6 +20,7 @@ class Program(models.Model):
         ('MSc', 'Master of Science'),
         ('MA', 'Master of Arts'),
         ('PhD', 'Doctor of Philosophy'),
+        
     )
     
     name = models.CharField(max_length=100)
@@ -39,7 +40,6 @@ class Semester(models.Model):
         ('Spring', 'Spring'),
         ('Summer', 'Summer'),
     )
-    
     year = models.PositiveSmallIntegerField()
     semester = models.CharField(max_length=10, choices=SEMESTER_CHOICES)
     start_date = models.DateField()
