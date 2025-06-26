@@ -28,7 +28,7 @@ class Resource(models.Model):
         ('other', 'Other'),
     )
     
-    course_offering = models.ForeignKey('courses.CourseOffering', on_delete=models.CASCADE, null=True, blank=True)
+    course = models.ForeignKey('courses.TermCourse', on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=200)
     resource_type = models.CharField(max_length=10, choices=RESOURCE_TYPE_CHOICES)
     file = models.FileField(upload_to='resources/', null=True, blank=True)

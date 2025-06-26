@@ -1,9 +1,9 @@
 from rest_framework import serializers
 from .models import Department, Program, Semester
-from users.serializers import UserSerializer
+from users.serializers import CustomUserSerializer
 
 class DepartmentSerializer(serializers.ModelSerializer):
-    head_of_department = UserSerializer(read_only=True)
+    head_of_department = CustomUserSerializer(read_only=True)
     
     class Meta:
         model = Department

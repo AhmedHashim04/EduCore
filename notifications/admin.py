@@ -11,4 +11,4 @@ class AnnouncementAdmin(admin.ModelAdmin):
 class ResourceAdmin(admin.ModelAdmin):
     list_display = ('title', 'resource_type', 'uploaded_by', 'uploaded_at', 'is_public')
     search_fields = ('title', 'description')
-    list_filter = ('resource_type', 'is_public', 'course_offering')
+    list_filter = ('resource_type', 'is_public', 'course')

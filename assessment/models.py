@@ -1,9 +1,9 @@
 from django.db import models
-from courses.models import CourseOffering
+from courses.models import TermCourse
 from users.models import User
 
 class Assignment(models.Model):
-    course_offering = models.ForeignKey(CourseOffering, on_delete=models.CASCADE)
+    course = models.ForeignKey(TermCourse, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField()
     due_date = models.DateTimeField()
@@ -17,7 +17,7 @@ class Assignment(models.Model):
     ), default='file')
     
     def __str__(self):
-        return f"{self.title} - {self.course_offering}"
+        return f"{self.title} - {self.course}"
 
 class Submission(models.Model):
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
@@ -43,7 +43,7 @@ class Exam(models.Model):
         ('project', 'Project'),
     )
     
-    course_offering = models.ForeignKey(CourseOffering, on_delete=models.CASCADE)
+    course = models.ForeignKey(TermCourse, on_delete=models.CASCADE)
     exam_type = models.CharField(max_length=10, choices=EXAM_TYPE_CHOICES)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
@@ -53,7 +53,7 @@ class Exam(models.Model):
     location = models.CharField(max_length=100, null=True, blank=True)
     
     def __str__(self):
-        return f"{self.get_exam_type_display()} - {self.course_offering}"
+        return f"{self.get_exam_type_display()} - {self.course}"
 
 class Grade(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)

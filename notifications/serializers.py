@@ -1,18 +1,18 @@
 from rest_framework import serializers
 from .models import Announcement, Resource
-from users.serializers import UserSerializer
-from courses.serializers import CourseOfferingSerializer
+from users.serializers import CustomUserSerializer
+from courses.serializers import TermCourseSerializer
 
 class AnnouncementSerializer(serializers.ModelSerializer):
-    created_by = UserSerializer(read_only=True)
+    created_by = CustomUserSerializer(read_only=True)
     
     class Meta:
         model = Announcement
         fields = '__all__'
 
 class ResourceSerializer(serializers.ModelSerializer):
-    uploaded_by = UserSerializer(read_only=True)
-    course_offering = CourseOfferingSerializer(read_only=True)
+    uploaded_by = CustomUserSerializer(read_only=True)
+    course_offering = TermCourseSerializer(read_only=True)
     
     class Meta:
         model = Resource

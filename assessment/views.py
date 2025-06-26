@@ -4,7 +4,7 @@ from .serializers import (
     AssignmentSerializer, SubmissionSerializer,
     ExamSerializer, GradeSerializer
 )
-from courses.models import CourseOffering
+from courses.models import TermCourse
 from django_filters.rest_framework import DjangoFilterBackend
 
 class AssignmentListView(generics.ListCreateAPIView):
@@ -17,7 +17,7 @@ class AssignmentListView(generics.ListCreateAPIView):
         queryset = Assignment.objects.all()
         course_offering_id = self.request.query_params.get('course_offering_id')
         if course_offering_id:
-            course_offering = CourseOffering.objects.get(id=course_offering_id)
+            course_offering = TermCourse.objects.get(id=course_offering_id)
             queryset = queryset.filter(course_offering=course_offering)
         return queryset
 
