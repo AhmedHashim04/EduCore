@@ -42,6 +42,7 @@ class SubmissionDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class ExamListView(generics.ListCreateAPIView):
     serializer_class = ExamSerializer
+    queryset = Exam.objects.all()
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['course_offering', 'exam_type']
