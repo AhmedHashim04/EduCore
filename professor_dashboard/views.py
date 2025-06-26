@@ -92,12 +92,12 @@ class AssignmentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Assignment.objects.filter(
-            course__instructor=self.request.user
+            course__professor=self.request.user
         ).select_related('course', 'course__semester')
 
     def perform_create(self, serializer):
         course = serializer.validated_data['course']
-        if course.instructor != self.request.user:
+        if course.professor != self.request.user:
             return Response(
                 {"error": "You are not the professor for this course"},
                 status=status.HTTP_403_FORBIDDEN
@@ -124,7 +124,7 @@ class ExamViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Exam.objects.filter(
-            course__instructor=self.request.user
+            course__professor=self.request.user
         ).select_related('course', 'course__semester')
 
 class AnnouncementViewSet(viewsets.ModelViewSet):
@@ -163,7 +163,7 @@ class GradeSubmissionView(generics.UpdateAPIView):
     
     def perform_update(self, serializer):
         submission = self.get_object()
-        if submission.assignment.course.instructor != self.request.user:
+        if submission.assignment.course.professor != self.request.user:
             return Response(
                 {"error": "You are not authorized to grade this submission"},
                 status=status.HTTP_403_FORBIDDEN

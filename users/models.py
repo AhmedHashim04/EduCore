@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+# from django.core.validators import RegexValidator
 
 
 class User(AbstractUser):
@@ -12,13 +13,13 @@ class User(AbstractUser):
     profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
     
     # Added phone number validation
-    phone_regex = RegexValidator(
-        regex=r'^\+?1?\d{9,15}$',
-        message="Phone number must be in format: '+999999999'. Up to 15 digits allowed."
-    )
+    # phone_regex = RegexValidator(
+    #     regex=r'^\+?1?\d{9,15}$',
+    #     message="Phone number must be in format: '+'. Up to 15 digits allowed."
+    # )
     phone_number = models.CharField(
         max_length=20, 
-        validators=[phone_regex], 
+        # validators=[phone_regex], 
         null=True, 
         blank=True
     )

@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 from django.utils import timezone
 from django.db.models import Q, Prefetch
 from assessment.models import Assignment, Submission, Exam, Grade
-from notifications.models import Announcement, Resource
+from notifications.models import Announcement, Resource, AnnouncementWatch
 from student_services.models import Enrollment, StudentProfile, Attendance
 from academics.models import  Semester
 from courses.models import TermCourse
@@ -16,6 +16,7 @@ from .serializers import (
     AttendanceSerializer, StudentProfileSerializer,EnrollmentSerializer,
     GradeSerializer, SubmissionSerializer ,
     CourseEnrollmentSerializer, CourseSerializer
+    
 )
 
 class StudentPermission(permissions.BasePermission):
@@ -92,7 +93,7 @@ class StudentCourseViewSet(viewsets.ReadOnlyModelViewSet):
         return TermCourse.objects.filter(
             enrollment__student=student,
             enrollment__is_active=True
-        ).distinct().select_related('instructot', 'course')
+        ).distinct().select_related('professor', 'course')
 
 # Student Assignments in Detail with Submessions
 class StudentAssignmentViewSet(viewsets.ReadOnlyModelViewSet):
@@ -182,6 +183,7 @@ class StudentSubmissionViewSet(viewsets.ModelViewSet):
         
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+#Student Enroll and Withdrow Course
 class StudentEnrollmentViewSet(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated, StudentPermission]
 
@@ -271,6 +273,7 @@ class StudentEnrollmentViewSet(viewsets.ViewSet):
             status=status.HTTP_200_OK
         )
 
+#Show All Student Grades
 class StudentGradeViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [permissions.IsAuthenticated, StudentPermission]
     serializer_class = GradeSerializer
@@ -281,6 +284,7 @@ class StudentGradeViewSet(viewsets.ReadOnlyModelViewSet):
             published=True
         ).select_related('exam', 'exam__course', 'exam__course__course')
 
+#Show Student Attendance
 class StudentAttendanceViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [permissions.IsAuthenticated, StudentPermission]
     serializer_class = AttendanceSerializer
@@ -290,10 +294,11 @@ class StudentAttendanceViewSet(viewsets.ReadOnlyModelViewSet):
             student=self.request.user
         ).select_related('course', 'course__course')
 
+#Student Announcements and Announcement Watched
 class AnnouncementViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [permissions.IsAuthenticated, StudentPermission]
     serializer_class = AnnouncementSerializer
-    
+
     def get_queryset(self):
         student = self.request.user
         return Announcement.objects.filter(
@@ -303,7 +308,7 @@ class AnnouncementViewSet(viewsets.ReadOnlyModelViewSet):
         ).distinct().prefetch_related(
             Prefetch(
                 'views',
-                queryset=AnnouncementView.objects.filter(student=student),
+                queryset=AnnouncementWatch.objects.filter(user=student),
                 to_attr='student_views'
             )
         )
@@ -311,16 +316,16 @@ class AnnouncementViewSet(viewsets.ReadOnlyModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         student = request.user
-        
+
         # Mark as viewed
-        AnnouncementView.objects.get_or_create(
+        AnnouncementWatch.objects.get_or_create(
             announcement=instance,
-            student=student,
+            user=student,
             defaults={'viewed_at': timezone.now()}
         )
-        
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
+
 
 class StudentResourceViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [permissions.IsAuthenticated, StudentPermission]

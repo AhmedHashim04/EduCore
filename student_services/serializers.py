@@ -7,11 +7,11 @@ from courses.models import TermCourse
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    instructor_name = serializers.CharField(source='instructor.get_full_name', read_only=True)
+    professor_name = serializers.CharField(source='professor.get_full_name', read_only=True)
     
     class Meta:
         model = TermCourse
-        fields = ['id', 'course', 'semester', 'instructor', 'instructor_name', 'capacity']
+        fields = ['id', 'course', 'semester', 'professor', 'professor_name', 'capacity']
 
 class EnrollmentSerializer(serializers.ModelSerializer):
     course = CourseSerializer()
@@ -98,7 +98,7 @@ class AnnouncementSerializer(serializers.ModelSerializer):
 
 class AttendanceSerializer(serializers.ModelSerializer):
     course_name = serializers.CharField(source='course.course.name', read_only=True)
-    
+
     class Meta:
         model = Attendance
         fields = ['id', 'date', 'status', 'course', 'course_name', 'notes']

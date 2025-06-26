@@ -24,11 +24,7 @@ router.register(r'resources', StudentResourceViewSet, basename='student-resource
 
 urlpatterns = [
     path('dashboard/', StudentDashboardView.as_view(), name='student-dashboard'),
-    path('enrollment/', StudentEnrollmentViewSet.as_view({
-        'post': 'enroll'
-    }), name='student-enroll'),
-    path('enrollment/<int:pk>/withdraw/', StudentEnrollmentViewSet.as_view({
-        'post': 'withdraw'
-    }), name='student-withdraw'),
+    path('enrollment/', StudentEnrollmentViewSet.as_view({'post': 'enroll'}), name='student-enroll'),
+    path('enrollment/<int:pk>/withdraw/', StudentEnrollmentViewSet.as_view({'post': 'withdraw'}), name='student-withdraw'),
     path('', include(router.urls)),
 ]

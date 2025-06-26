@@ -1,6 +1,6 @@
 from django.db import models
 from users.models import User
-
+from django.core.exceptions import ValidationError
 class Announcement(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -20,10 +20,8 @@ class Announcement(models.Model):
     )
     is_important = models.BooleanField(default=False)
     expiry_date = models.DateTimeField(null=True, blank=True)
-    
-    # New relationship
     related_course = models.ForeignKey(
-        TermCourse, 
+        'courses.TermCourse', 
         on_delete=models.CASCADE, 
         null=True, 
         blank=True
@@ -35,6 +33,12 @@ class Announcement(models.Model):
     def __str__(self):
         return self.title
 
+class AnnouncementWatch(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE)
+    viewed_at = models.DateTimeField(auto_now_add=True)
+
+
 class Resource(models.Model):
     RESOURCE_TYPE_CHOICES = (
         ('book', 'Book'), ('slide', 'Slide'), ('video', 'Video'),
@@ -42,7 +46,7 @@ class Resource(models.Model):
         ('exam', 'Exam'), ('other', 'Other'),
     )
     course = models.ForeignKey(
-        TermCourse, 
+        'courses.TermCourse', 
         on_delete=models.CASCADE, 
         null=True, 
         blank=True
