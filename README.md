@@ -167,7 +167,7 @@ POST /api/assessment/assignments/
 Content-Type: application/json
 
 {
-  "course_offering": 1,
+  "course": 1,
   "title": "Final Project",
   "description": "Create a comprehensive project",
   "due_date": "2023-12-15T23:59:00Z",
@@ -244,8 +244,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## ✉️ Contact
 
 **Project Maintainer** – Ahmed Hashim  
-<div align="center">
-  <img src="https://contrib.rocks/image?repo=AhmedHashim04/college-management-api" />
-  <br/>
-  <sub>Made with ❤️ by [contrib.rocks](https://contrib.rocks)</sub>
-</div>
