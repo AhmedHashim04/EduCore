@@ -8,10 +8,16 @@
 
 ## 📌 Overview
 
-**College Management System** is a comprehensive RESTful API built with Django REST Framework. It offers a full-featured backend system to manage academic institutions, with support for user roles, course structures, grading, attendance, and more.
+**EuCore CollageSystem System** is a comprehensive RESTful API built with Django REST Framework. It offers a full-featured backend system to manage academic institutions, with support for user roles, course structures, grading, attendance, and more.
 
 ---
 
+## 📸 Screenshots
+
+![Dashboard Screenshot](image.png)
+![alt text](image.png)
+
+---
 ## ✨ Features
 
 - 🔐 Multi-role Authentication System (Admin, Professor, Student, Staff)  

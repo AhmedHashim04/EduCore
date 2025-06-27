@@ -15,6 +15,9 @@ class Course(models.Model):
     
     def __str__(self):
         return f"{self.code} - {self.title}"
+    
+    def __str__(self):
+        return f"{self.course} - {self.semester}"
 
 class TermCourse(models.Model):
     """
@@ -30,10 +33,9 @@ class TermCourse(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     credits = models.PositiveSmallIntegerField()
-    instructor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,limit_choices_to={'user_type': 2})
+    professor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,limit_choices_to={'user_type': 2})
     sections = models.ManyToManyField('Section', blank=True)
     capacity = models.PositiveSmallIntegerField()
-    enrolled_students = models.PositiveSmallIntegerField(default=0)
     schedule = models.CharField(max_length=100, help_text="e.g., Mon/Wed 10:00-11:30")
     classroom = models.CharField(max_length=50, null=True, blank=True)
     is_active = models.BooleanField(default=True)
@@ -61,7 +63,6 @@ class CourseMaterial(models.Model):
 class Section(models.Model):
     staff = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,limit_choices_to={'user_type': 4})
     capacity = models.PositiveSmallIntegerField()
-    enrolled_students = models.PositiveSmallIntegerField(default=0)
     schedule = models.CharField(max_length=100, help_text="e.g., Mon/Wed 10:00-11:30")
     classroom = models.CharField(max_length=50, null=True, blank=True)
     is_active = models.BooleanField(default=True)
@@ -71,3 +72,4 @@ class Section(models.Model):
     
     def __str__(self):
         return f"{self.classroom} - {self.staff}"
+    

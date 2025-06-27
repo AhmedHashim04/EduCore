@@ -6,7 +6,7 @@ from rest_framework import permissions
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="College Management API",
+        title="EduCore CollegeSystem API",
         default_version='v1',
         description="API for College Management System",
         contact=openapi.Contact(email="admin@college.edu"),
@@ -21,12 +21,11 @@ urlpatterns = [
 
     path('api/auth/', include('users.urls')),
     path('api/courses/', include('courses.urls')),
-    path('api/academics/', include('academics.urls')),
     path('api/assessment/', include('assessment.urls')),
     path('api/student-services/', include('student_services.urls')),
     path('api/professor/', include('professor_dashboard.urls')),
     path('api/notifications/', include('notifications.urls')),
-    
+
     # Documentation
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('swagger.json', schema_view.without_ui(cache_timeout=0), name='schema-json'),

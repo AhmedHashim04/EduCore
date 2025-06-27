@@ -1,0 +1,795 @@
+[
+  {
+    "model": "users.User",
+    "pk": 100,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_1",
+      "email": "user_1@example.edu",
+      "first_name": "First_1",
+      "last_name": "Last_1",
+      "user_type": 1
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_2",
+      "email": "user_2@example.edu",
+      "first_name": "First_2",
+      "last_name": "Last_2",
+      "user_type": 1
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_3",
+      "email": "user_3@example.edu",
+      "first_name": "First_3",
+      "last_name": "Last_3",
+      "user_type": 1
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_4",
+      "email": "user_4@example.edu",
+      "first_name": "First_4",
+      "last_name": "Last_4",
+      "user_type": 1
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_5",
+      "email": "user_5@example.edu",
+      "first_name": "First_5",
+      "last_name": "Last_5",
+      "user_type": 1
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_6",
+      "email": "user_6@example.edu",
+      "first_name": "First_6",
+      "last_name": "Last_6",
+      "user_type": 2
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_7",
+      "email": "user_7@example.edu",
+      "first_name": "First_7",
+      "last_name": "Last_7",
+      "user_type": 2
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_8",
+      "email": "user_8@example.edu",
+      "first_name": "First_8",
+      "last_name": "Last_8",
+      "user_type": 2
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_9",
+      "email": "user_9@example.edu",
+      "first_name": "First_9",
+      "last_name": "Last_9",
+      "user_type": 2
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_10",
+      "email": "user_10@example.edu",
+      "first_name": "First_10",
+      "last_name": "Last_10",
+      "user_type": 2
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 11,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_11",
+      "email": "user_11@example.edu",
+      "first_name": "First_11",
+      "last_name": "Last_11",
+      "user_type": 2
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 12,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_12",
+      "email": "user_12@example.edu",
+      "first_name": "First_12",
+      "last_name": "Last_12",
+      "user_type": 2
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 13,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_13",
+      "email": "user_13@example.edu",
+      "first_name": "First_13",
+      "last_name": "Last_13",
+      "user_type": 2
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 14,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_14",
+      "email": "user_14@example.edu",
+      "first_name": "First_14",
+      "last_name": "Last_14",
+      "user_type": 2
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 15,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_15",
+      "email": "user_15@example.edu",
+      "first_name": "First_15",
+      "last_name": "Last_15",
+      "user_type": 2
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 16,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_16",
+      "email": "user_16@example.edu",
+      "first_name": "First_16",
+      "last_name": "Last_16",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 17,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_17",
+      "email": "user_17@example.edu",
+      "first_name": "First_17",
+      "last_name": "Last_17",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 18,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_18",
+      "email": "user_18@example.edu",
+      "first_name": "First_18",
+      "last_name": "Last_18",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 19,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_19",
+      "email": "user_19@example.edu",
+      "first_name": "First_19",
+      "last_name": "Last_19",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 20,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_20",
+      "email": "user_20@example.edu",
+      "first_name": "First_20",
+      "last_name": "Last_20",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 21,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_21",
+      "email": "user_21@example.edu",
+      "first_name": "First_21",
+      "last_name": "Last_21",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 22,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_22",
+      "email": "user_22@example.edu",
+      "first_name": "First_22",
+      "last_name": "Last_22",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 23,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_23",
+      "email": "user_23@example.edu",
+      "first_name": "First_23",
+      "last_name": "Last_23",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 24,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_24",
+      "email": "user_24@example.edu",
+      "first_name": "First_24",
+      "last_name": "Last_24",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 25,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_25",
+      "email": "user_25@example.edu",
+      "first_name": "First_25",
+      "last_name": "Last_25",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 26,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_26",
+      "email": "user_26@example.edu",
+      "first_name": "First_26",
+      "last_name": "Last_26",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 27,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_27",
+      "email": "user_27@example.edu",
+      "first_name": "First_27",
+      "last_name": "Last_27",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 28,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_28",
+      "email": "user_28@example.edu",
+      "first_name": "First_28",
+      "last_name": "Last_28",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 29,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_29",
+      "email": "user_29@example.edu",
+      "first_name": "First_29",
+      "last_name": "Last_29",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 30,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_30",
+      "email": "user_30@example.edu",
+      "first_name": "First_30",
+      "last_name": "Last_30",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 31,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_31",
+      "email": "user_31@example.edu",
+      "first_name": "First_31",
+      "last_name": "Last_31",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 32,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_32",
+      "email": "user_32@example.edu",
+      "first_name": "First_32",
+      "last_name": "Last_32",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 33,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_33",
+      "email": "user_33@example.edu",
+      "first_name": "First_33",
+      "last_name": "Last_33",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 34,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_34",
+      "email": "user_34@example.edu",
+      "first_name": "First_34",
+      "last_name": "Last_34",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 35,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_35",
+      "email": "user_35@example.edu",
+      "first_name": "First_35",
+      "last_name": "Last_35",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 36,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_36",
+      "email": "user_36@example.edu",
+      "first_name": "First_36",
+      "last_name": "Last_36",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 37,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_37",
+      "email": "user_37@example.edu",
+      "first_name": "First_37",
+      "last_name": "Last_37",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 38,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_38",
+      "email": "user_38@example.edu",
+      "first_name": "First_38",
+      "last_name": "Last_38",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 39,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_39",
+      "email": "user_39@example.edu",
+      "first_name": "First_39",
+      "last_name": "Last_39",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 40,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_40",
+      "email": "user_40@example.edu",
+      "first_name": "First_40",
+      "last_name": "Last_40",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 41,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_41",
+      "email": "user_41@example.edu",
+      "first_name": "First_41",
+      "last_name": "Last_41",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 42,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_42",
+      "email": "user_42@example.edu",
+      "first_name": "First_42",
+      "last_name": "Last_42",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 43,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_43",
+      "email": "user_43@example.edu",
+      "first_name": "First_43",
+      "last_name": "Last_43",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 44,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_44",
+      "email": "user_44@example.edu",
+      "first_name": "First_44",
+      "last_name": "Last_44",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 45,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_45",
+      "email": "user_45@example.edu",
+      "first_name": "First_45",
+      "last_name": "Last_45",
+      "user_type": 3
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 46,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_46",
+      "email": "user_46@example.edu",
+      "first_name": "First_46",
+      "last_name": "Last_46",
+      "user_type": 4
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 47,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_47",
+      "email": "user_47@example.edu",
+      "first_name": "First_47",
+      "last_name": "Last_47",
+      "user_type": 4
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 48,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_48",
+      "email": "user_48@example.edu",
+      "first_name": "First_48",
+      "last_name": "Last_48",
+      "user_type": 4
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 49,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_49",
+      "email": "user_49@example.edu",
+      "first_name": "First_49",
+      "last_name": "Last_49",
+      "user_type": 4
+    }
+  },
+  {
+    "model": "users.User",
+    "pk": 50,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
+      "username": "user_50",
+      "email": "user_50@example.edu",
+      "first_name": "First_50",
+      "last_name": "Last_50",
+      "user_type": 4
+    }
+  },
+  {
+    "model": "academics.Department",
+    "pk": 1,
+    "fields": {
+      "name": "Computer Science",
+      "code": "CS",
+      "description": "Department of Computer Science",
+      "head_of_department": null,
+      "established_date": "1990-01-01",
+      "website": "https://cs.example.edu",
+      "budget_code": "CS-BUDGET",
+      "contact_email": "cs@example.edu"
+    }
+  },
+  {
+    "model": "academics.Department",
+    "pk": 2,
+    "fields": {
+      "name": "Mathematics",
+      "code": "MATH",
+      "description": "Department of Mathematics",
+      "head_of_department": null,
+      "established_date": "1991-01-01",
+      "website": "https://math.example.edu",
+      "budget_code": "MATH-BUDGET",
+      "contact_email": "math@example.edu"
+    }
+  },
+  {
+    "model": "academics.Department",
+    "pk": 3,
+    "fields": {
+      "name": "Physics",
+      "code": "PHY",
+      "description": "Department of Physics",
+      "head_of_department": null,
+      "established_date": "1992-01-01",
+      "website": "https://phy.example.edu",
+      "budget_code": "PHY-BUDGET",
+      "contact_email": "phy@example.edu"
+    }
+  },
+  {
+    "model": "academics.Department",
+    "pk": 4,
+    "fields": {
+      "name": "Biology",
+      "code": "BIO",
+      "description": "Department of Biology",
+      "head_of_department": null,
+      "established_date": "1993-01-01",
+      "website": "https://bio.example.edu",
+      "budget_code": "BIO-BUDGET",
+      "contact_email": "bio@example.edu"
+    }
+  },
+  {
+    "model": "academics.Department",
+    "pk": 5,
+    "fields": {
+      "name": "Chemistry",
+      "code": "CHEM",
+      "description": "Department of Chemistry",
+      "head_of_department": null,
+      "established_date": "1994-01-01",
+      "website": "https://chem.example.edu",
+      "budget_code": "CHEM-BUDGET",
+      "contact_email": "chem@example.edu"
+    }
+  },
+  {
+    "model": "academics.Program",
+    "pk": 1,
+    "fields": {
+      "name": "Computer Science BSc",
+      "code": "BSc-001",
+      "department": 1,
+      "degree": "BSc",
+      "duration": 4,
+      "description": "Computer Science BSc program",
+      "total_credits": 120,
+      "accreditation_status": true,
+      "accreditation_expiry": "2030-12-31"
+    }
+  },
+  {
+    "model": "academics.Program",
+    "pk": 2,
+    "fields": {
+      "name": "Data Science MSc",
+      "code": "MSc-002",
+      "department": 1,
+      "degree": "MSc",
+      "duration": 2,
+      "description": "Data Science MSc program",
+      "total_credits": 60,
+      "accreditation_status": true,
+      "accreditation_expiry": "2030-12-31"
+    }
+  },
+  {
+    "model": "academics.Program",
+    "pk": 3,
+    "fields": {
+      "name": "Pure Mathematics",
+      "code": "BSc-003",
+      "department": 2,
+      "degree": "BSc",
+      "duration": 4,
+      "description": "Pure Mathematics program",
+      "total_credits": 120,
+      "accreditation_status": true,
+      "accreditation_expiry": "2030-12-31"
+    }
+  },
+  {
+    "model": "academics.Semester",
+    "pk": 1,
+    "fields": {
+      "year": 2023,
+      "semester": "Fall",
+      "start_date": "2023-08-01",
+      "end_date": "2023-12-15",
+      "registration_start": "2023-01-01",
+      "registration_end": "2023-02-01",
+      "is_current": false
+    }
+  },
+  {
+    "model": "academics.Semester",
+    "pk": 2,
+    "fields": {
+      "year": 2023,
+      "semester": "Spring",
+      "start_date": "2023-01-01",
+      "end_date": "2023-05-15",
+      "registration_start": "2023-01-01",
+      "registration_end": "2023-02-01",
+      "is_current": false
+    }
+  },
+  {
+    "model": "academics.Semester",
+    "pk": 3,
+    "fields": {
+      "year": 2023,
+      "semester": "Summer",
+      "start_date": "2023-05-01",
+      "end_date": "2023-08-15",
+      "registration_start": "2023-01-01",
+      "registration_end": "2023-02-01",
+      "is_current": false
+    }
+  },
+  {
+    "model": "academics.Semester",
+    "pk": 4,
+    "fields": {
+      "year": 2024,
+      "semester": "Fall",
+      "start_date": "2024-08-01",
+      "end_date": "2024-12-15",
+      "registration_start": "2024-01-01",
+      "registration_end": "2024-02-01",
+      "is_current": false
+    }
+  },
+  {
+    "model": "academics.Semester",
+    "pk": 5,
+    "fields": {
+      "year": 2024,
+      "semester": "Spring",
+      "start_date": "2024-01-01",
+      "end_date": "2024-05-15",
+      "registration_start": "2024-01-01",
+      "registration_end": "2024-02-01",
+      "is_current": false
+    }
+  },
+  {
+    "model": "academics.Semester",
+    "pk": 6,
+    "fields": {
+      "year": 2024,
+      "semester": "Summer",
+      "start_date": "2024-05-01",
+      "end_date": "2024-08-15",
+      "registration_start": "2024-01-01",
+      "registration_end": "2024-02-01",
+      "is_current": true
+    }
+  }
+]

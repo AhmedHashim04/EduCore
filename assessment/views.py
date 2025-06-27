@@ -1,64 +1,166 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, viewsets,status
 from .models import Assignment, Submission, Exam, Grade
-from .serializers import (
-    AssignmentSerializer, SubmissionSerializer,
-    ExamSerializer, GradeSerializer
-)
-from courses.models import CourseOffering
-from django_filters.rest_framework import DjangoFilterBackend
+from .serializers import StudentAssignmentSerializer, StudentSubmissionSerializer, StudentExamSerializer, StudentGradeSerializer
+from .serializers import ProfessorAssignmentSerializer, ProfessorSubmissionSerializer, ProfessorExamSerializer
+from rest_framework.response import Response
+from rest_framework.decorators import action
+from django.utils import timezone
+from users.permissions import StudentPermission, ProfessorPermission
+from users.models import User
 
-class AssignmentListView(generics.ListCreateAPIView):
-    serializer_class = AssignmentSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['course_offering']
+class StudentAssignmentViewSet(viewsets.ReadOnlyModelViewSet):
+    permission_classes = [permissions.IsAuthenticated, StudentPermission]
+    serializer_class = StudentAssignmentSerializer
+    
+    def get_queryset(self):
+        student = self.request.user
+        return Assignment.objects.filter(
+            course__enrollment__student=student,
+            course__enrollment__is_active=True
+        ).select_related('course', 'course__course')
+        # return Assignment.objects.filter(
+        #     course__enrollment__student=student,
+        #     course__enrollment__is_active=True
+        # ).distinct().select_related('course', 'course__course')
+    @action(detail=True, methods=['get'])
+    def submissions(self, request, pk=None):
+        assignment = self.get_object()
+        submissions = Submission.objects.filter(
+            assignment=assignment,
+            student=request.user
+        ).order_by('-submitted_at')
+        serializer = SubmissionSerializer(
+            submissions, 
+            many=True,
+            context={'request': request}
+        )
+        return Response(serializer.data)
+
+# Student Submissons in Detail and Update/Delete
+class StudentSubmissionViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated, StudentPermission]
+    serializer_class = StudentSubmissionSerializer
+    queryset = Submission.objects.all()
+    
+    def get_queryset(self):
+        return Submission.objects.filter(
+            student=self.request.user
+        ).select_related('assignment', 'assignment__course')
+    
+    def create(self, request, *args, **kwargs):
+        assignment_id = request.data.get('assignment')
+        student = request.user
+        
+        # Validate assignment exists and student is enrolled
+        assignment = Assignment.objects.filter(
+            id=assignment_id,
+            course__enrollment__student=student,
+            course__enrollment__is_active=True
+        ).first()
+        
+        if not assignment:
+            return Response(
+                {"error": "Invalid assignment or not enrolled"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Check if submission is allowed
+        if timezone.now() > assignment.due_date:
+            return Response(
+                {"error": "Submission deadline has passed"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Check attempt limit
+        current_attempt = Submission.objects.filter(
+            assignment=assignment,
+            student=student
+        ).count() + 1
+        
+        if current_attempt > assignment.max_attempts:
+            return Response(
+                {"error": "Maximum attempts exceeded"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Create submission
+        data = request.data.copy()
+        data['student'] = student.id
+        data['attempt_number'] = current_attempt
+        data['is_late'] = timezone.now() > assignment.due_date
+        
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+#Show All Student Grades
+class StudentGradeViewSet(viewsets.ReadOnlyModelViewSet):
+    permission_classes = [permissions.IsAuthenticated, StudentPermission]
+    serializer_class = StudentGradeSerializer
+    
+    def get_queryset(self):
+        return Grade.objects.filter(
+            student=self.request.user,
+            published=True
+        ).select_related('exam', 'exam__course', 'exam__course__course')
+
+class AssignmentViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated, ProfessorPermission]
+    serializer_class = StudentAssignmentSerializer
+    queryset = Assignment.objects.all()
 
     def get_queryset(self):
-        queryset = Assignment.objects.all()
-        course_offering_id = self.request.query_params.get('course_offering_id')
-        if course_offering_id:
-            course_offering = CourseOffering.objects.get(id=course_offering_id)
-            queryset = queryset.filter(course_offering=course_offering)
-        return queryset
-
-class AssignmentDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Assignment.objects.all()
-    serializer_class = AssignmentSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-class SubmissionListView(generics.ListCreateAPIView):
-    serializer_class = SubmissionSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['assignment', 'student']
+        return Assignment.objects.filter(
+            course__professor=self.request.user
+        ).select_related('course', 'course__semester')
 
     def perform_create(self, serializer):
-        serializer.save(student=self.request.user)
+        course = serializer.validated_data['course']
+        if course.professor != self.request.user:
+            return Response(
+                {"error": "You are not the professor for this course"},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        assignment = serializer.save()
 
-class SubmissionDetailView(generics.RetrieveUpdateDestroyAPIView):
+        # Create empty submissions for all enrolled students
+        students = User.objects.filter(
+            enrollment__course=course,
+            enrollment__is_active=True
+        )
+        submissions = [
+            Submission(assignment=assignment, student=student)
+            for student in students
+        ]
+        Submission.objects.bulk_create(submissions)
+        
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+class ExamViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated, ProfessorPermission]
+    serializer_class = ProfessorExamSerializer
+    queryset = Exam.objects.all()
+
+    def get_queryset(self):
+        return Exam.objects.filter(
+            course__professor=self.request.user
+        ).select_related('course', 'course__semester')
+
+class GradeSubmissionView(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated, ProfessorPermission]
+    serializer_class = ProfessorSubmissionSerializer
     queryset = Submission.objects.all()
-    serializer_class = SubmissionSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-class ExamListView(generics.ListCreateAPIView):
-    serializer_class = ExamSerializer
-    queryset = Exam.objects.all()
-    permission_classes = [permissions.IsAuthenticated]
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['course_offering', 'exam_type']
-
-class ExamDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Exam.objects.all()
-    serializer_class = ExamSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-class GradeListView(generics.ListCreateAPIView):
-    serializer_class = GradeSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['exam', 'student']
-
-class GradeDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Grade.objects.all()
-    serializer_class = GradeSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    
+    def perform_update(self, serializer):
+        submission = self.get_object()
+        if submission.assignment.course.professor != self.request.user:
+            return Response(
+                {"error": "You are not authorized to grade this submission"},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        serializer.save(
+            grader=self.request.user,
+            graded_at=timezone.now()
+        )

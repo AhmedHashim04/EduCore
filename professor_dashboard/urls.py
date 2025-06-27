@@ -1,10 +1,17 @@
-from django.urls import path
+# urls.py
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from .views import (
-    ProfessorProfileListView,
-    ProfessorProfileDetailView
+    ProfessorCourseViewSet,
+
 )
 
+router = DefaultRouter()
+router.register('courses', ProfessorCourseViewSet, basename='professor-course')
+
 urlpatterns = [
-    path('profiles/', ProfessorProfileListView.as_view(), name='professor-profile-list'),
-    path('profiles/<int:pk>/', ProfessorProfileDetailView.as_view(), name='professor-profile-detail'),
+    path('', include(router.urls)),
+    
+    # Additional endpoints
+    path('dashboard-summary/', ProfessorCourseViewSet.as_view({'get': 'list'}), name='dashboard-summary'),
 ]

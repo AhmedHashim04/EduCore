@@ -1,15 +1,18 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from .views import (
-    EnrollmentListView, EnrollmentDetailView,
-    StudentProfileListView, StudentProfileDetailView,
-    AttendanceListView, AttendanceDetailView
+    StudentDashboardView,
+
+    StudentAttendanceViewSet,
+
 )
 
+router = DefaultRouter()
+router.register(r'attendance', StudentAttendanceViewSet, basename='student-attendance')
+
+
 urlpatterns = [
-    path('enrollments/', EnrollmentListView.as_view(), name='enrollment-list'),
-    path('enrollments/<int:pk>/', EnrollmentDetailView.as_view(), name='enrollment-detail'),
-    path('profiles/', StudentProfileListView.as_view(), name='profile-list'),
-    path('profiles/<int:pk>/', StudentProfileDetailView.as_view(), name='profile-detail'),
-    path('attendance/', AttendanceListView.as_view(), name='attendance-list'),
-    path('attendance/<int:pk>/', AttendanceDetailView.as_view(), name='attendance-detail'),
+    path('dashboard/', StudentDashboardView.as_view(), name='student-dashboard'),
+    path('', include(router.urls)),
 ]
+

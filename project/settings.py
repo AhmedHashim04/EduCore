@@ -61,8 +61,8 @@ SIMPLE_JWT = {
     # 'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     # 'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     
-    'ACCESS_TOKEN_LIFETIME': timedelta(years=2), #in Test
-    'REFRESH_TOKEN_LIFETIME': timedelta(years=7), #in Test
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=100), #in Test
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=200), #in Test
 }
 
 DJOSER = {

@@ -1,17 +1,17 @@
 from rest_framework import permissions
 
-class IsAdmin(permissions.BasePermission):
+class AdminPermission(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user.user_type == 1
 
-class IsProfessor(permissions.BasePermission):
+class ProfessorPermission(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user.user_type == 2
 
-class IsStudent(permissions.BasePermission):
+class StudentPermission(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user.user_type == 3
 
-class IsStaff(permissions.BasePermission):
+class StaffPermission(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user.user_type == 4

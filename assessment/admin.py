@@ -3,9 +3,9 @@ from .models import Assignment, Submission, Exam, Grade
 
 @admin.register(Assignment)
 class AssignmentAdmin(admin.ModelAdmin):
-    list_display = ('title', 'course_offering', 'due_date', 'total_points')
-    search_fields = ('title', 'course_offering__course__title')
-    list_filter = ('course_offering',)
+    list_display = ('title', 'course', 'due_date', 'total_points')
+    search_fields = ('title', 'course__course__title')
+    list_filter = ('course',)
 
 @admin.register(Submission)
 class SubmissionAdmin(admin.ModelAdmin):
@@ -15,9 +15,9 @@ class SubmissionAdmin(admin.ModelAdmin):
 
 @admin.register(Exam)
 class ExamAdmin(admin.ModelAdmin):
-    list_display = ('title', 'course_offering', 'exam_type', 'date', 'total_points')
-    search_fields = ('title', 'course_offering__course__title')
-    list_filter = ('exam_type', 'course_offering')
+    list_display = ('title', 'course', 'exam_type', 'date', 'total_points')
+    search_fields = ('title', 'course__course__title')
+    list_filter = ('exam_type', 'course')
 
 @admin.register(Grade)
 class GradeAdmin(admin.ModelAdmin):
