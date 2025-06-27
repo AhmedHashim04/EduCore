@@ -19,7 +19,7 @@ class UserCreateSerializer(BaseUserCreateSerializer):
         }
 
     def validate_user_type(self, value):
-        if value == 'admin':
+        if value == 1:
             raise serializers.ValidationError("You are not allowed to choose 'admin' as user type.")
         return value
 

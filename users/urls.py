@@ -1,6 +1,6 @@
 from django.urls import path, include
 from .views import (
-    ProfileView,
+    ProfileView
     
 )
 import djoser

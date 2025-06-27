@@ -20,6 +20,7 @@ from users.permissions import StudentPermission
 
 class StudentDashboardView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated, StudentPermission]
+    serializer_class = None
     
     def get(self, request):
         student = request.user

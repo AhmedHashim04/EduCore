@@ -1,14 +1,16 @@
 [
   {
     "model": "users.User",
-    "pk": 100,
+    "pk": 1,
     "fields": {
       "password": "pbkdf2_sha256$260000$gnZ1i7Y8W3o0KJ9x$abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH=",
       "username": "user_1",
       "email": "user_1@example.edu",
       "first_name": "First_1",
       "last_name": "Last_1",
-      "user_type": 1
+      "user_type": 1,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -20,7 +22,10 @@
       "email": "user_2@example.edu",
       "first_name": "First_2",
       "last_name": "Last_2",
-      "user_type": 1
+      "user_type": 1,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
+
     }
   },
   {
@@ -32,7 +37,10 @@
       "email": "user_3@example.edu",
       "first_name": "First_3",
       "last_name": "Last_3",
-      "user_type": 1
+      "user_type": 1,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
+
     }
   },
   {
@@ -44,7 +52,10 @@
       "email": "user_4@example.edu",
       "first_name": "First_4",
       "last_name": "Last_4",
-      "user_type": 1
+      "user_type": 1,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
+
     }
   },
   {
@@ -56,7 +67,10 @@
       "email": "user_5@example.edu",
       "first_name": "First_5",
       "last_name": "Last_5",
-      "user_type": 1
+      "user_type": 1,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
+
     }
   },
   {
@@ -68,7 +82,9 @@
       "email": "user_6@example.edu",
       "first_name": "First_6",
       "last_name": "Last_6",
-      "user_type": 2
+      "user_type": 2,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -80,7 +96,9 @@
       "email": "user_7@example.edu",
       "first_name": "First_7",
       "last_name": "Last_7",
-      "user_type": 2
+      "user_type": 2,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -92,7 +110,9 @@
       "email": "user_8@example.edu",
       "first_name": "First_8",
       "last_name": "Last_8",
-      "user_type": 2
+      "user_type": 2,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -104,7 +124,9 @@
       "email": "user_9@example.edu",
       "first_name": "First_9",
       "last_name": "Last_9",
-      "user_type": 2
+      "user_type": 2,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -116,7 +138,9 @@
       "email": "user_10@example.edu",
       "first_name": "First_10",
       "last_name": "Last_10",
-      "user_type": 2
+      "user_type": 2,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -128,7 +152,9 @@
       "email": "user_11@example.edu",
       "first_name": "First_11",
       "last_name": "Last_11",
-      "user_type": 2
+      "user_type": 2,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -140,7 +166,9 @@
       "email": "user_12@example.edu",
       "first_name": "First_12",
       "last_name": "Last_12",
-      "user_type": 2
+      "user_type": 2,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -152,7 +180,9 @@
       "email": "user_13@example.edu",
       "first_name": "First_13",
       "last_name": "Last_13",
-      "user_type": 2
+      "user_type": 2,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -164,7 +194,9 @@
       "email": "user_14@example.edu",
       "first_name": "First_14",
       "last_name": "Last_14",
-      "user_type": 2
+      "user_type": 2,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -176,7 +208,9 @@
       "email": "user_15@example.edu",
       "first_name": "First_15",
       "last_name": "Last_15",
-      "user_type": 2
+      "user_type": 2,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -188,7 +222,9 @@
       "email": "user_16@example.edu",
       "first_name": "First_16",
       "last_name": "Last_16",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -200,7 +236,9 @@
       "email": "user_17@example.edu",
       "first_name": "First_17",
       "last_name": "Last_17",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -212,7 +250,9 @@
       "email": "user_18@example.edu",
       "first_name": "First_18",
       "last_name": "Last_18",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -224,7 +264,9 @@
       "email": "user_19@example.edu",
       "first_name": "First_19",
       "last_name": "Last_19",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -236,7 +278,9 @@
       "email": "user_20@example.edu",
       "first_name": "First_20",
       "last_name": "Last_20",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -248,7 +292,9 @@
       "email": "user_21@example.edu",
       "first_name": "First_21",
       "last_name": "Last_21",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -260,7 +306,9 @@
       "email": "user_22@example.edu",
       "first_name": "First_22",
       "last_name": "Last_22",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -272,7 +320,9 @@
       "email": "user_23@example.edu",
       "first_name": "First_23",
       "last_name": "Last_23",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -284,7 +334,9 @@
       "email": "user_24@example.edu",
       "first_name": "First_24",
       "last_name": "Last_24",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -296,7 +348,9 @@
       "email": "user_25@example.edu",
       "first_name": "First_25",
       "last_name": "Last_25",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -308,7 +362,9 @@
       "email": "user_26@example.edu",
       "first_name": "First_26",
       "last_name": "Last_26",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -320,7 +376,9 @@
       "email": "user_27@example.edu",
       "first_name": "First_27",
       "last_name": "Last_27",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -332,7 +390,9 @@
       "email": "user_28@example.edu",
       "first_name": "First_28",
       "last_name": "Last_28",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -344,7 +404,9 @@
       "email": "user_29@example.edu",
       "first_name": "First_29",
       "last_name": "Last_29",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -356,7 +418,9 @@
       "email": "user_30@example.edu",
       "first_name": "First_30",
       "last_name": "Last_30",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -368,7 +432,9 @@
       "email": "user_31@example.edu",
       "first_name": "First_31",
       "last_name": "Last_31",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -380,7 +446,9 @@
       "email": "user_32@example.edu",
       "first_name": "First_32",
       "last_name": "Last_32",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -392,7 +460,9 @@
       "email": "user_33@example.edu",
       "first_name": "First_33",
       "last_name": "Last_33",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -404,7 +474,9 @@
       "email": "user_34@example.edu",
       "first_name": "First_34",
       "last_name": "Last_34",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -416,7 +488,9 @@
       "email": "user_35@example.edu",
       "first_name": "First_35",
       "last_name": "Last_35",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -428,7 +502,9 @@
       "email": "user_36@example.edu",
       "first_name": "First_36",
       "last_name": "Last_36",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -440,7 +516,9 @@
       "email": "user_37@example.edu",
       "first_name": "First_37",
       "last_name": "Last_37",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -452,7 +530,9 @@
       "email": "user_38@example.edu",
       "first_name": "First_38",
       "last_name": "Last_38",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -464,7 +544,9 @@
       "email": "user_39@example.edu",
       "first_name": "First_39",
       "last_name": "Last_39",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -476,7 +558,9 @@
       "email": "user_40@example.edu",
       "first_name": "First_40",
       "last_name": "Last_40",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -488,7 +572,9 @@
       "email": "user_41@example.edu",
       "first_name": "First_41",
       "last_name": "Last_41",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -500,7 +586,9 @@
       "email": "user_42@example.edu",
       "first_name": "First_42",
       "last_name": "Last_42",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -512,7 +600,9 @@
       "email": "user_43@example.edu",
       "first_name": "First_43",
       "last_name": "Last_43",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -524,7 +614,9 @@
       "email": "user_44@example.edu",
       "first_name": "First_44",
       "last_name": "Last_44",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -536,7 +628,9 @@
       "email": "user_45@example.edu",
       "first_name": "First_45",
       "last_name": "Last_45",
-      "user_type": 3
+      "user_type": 3,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -548,7 +642,9 @@
       "email": "user_46@example.edu",
       "first_name": "First_46",
       "last_name": "Last_46",
-      "user_type": 4
+      "user_type": 4,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -560,7 +656,9 @@
       "email": "user_47@example.edu",
       "first_name": "First_47",
       "last_name": "Last_47",
-      "user_type": 4
+      "user_type": 4,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -572,7 +670,9 @@
       "email": "user_48@example.edu",
       "first_name": "First_48",
       "last_name": "Last_48",
-      "user_type": 4
+      "user_type": 4,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -584,7 +684,9 @@
       "email": "user_49@example.edu",
       "first_name": "First_49",
       "last_name": "Last_49",
-      "user_type": 4
+      "user_type": 4,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
@@ -596,7 +698,9 @@
       "email": "user_50@example.edu",
       "first_name": "First_50",
       "last_name": "Last_50",
-      "user_type": 4
+      "user_type": 4,
+      "is_verified":true,
+      "last_activity": "2021-10-01T00:00:00Z"
     }
   },
   {
