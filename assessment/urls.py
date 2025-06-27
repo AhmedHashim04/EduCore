@@ -12,11 +12,11 @@ from .views import (
 )
 
 router = DefaultRouter()
-router.register(r'assignments', StudentAssignmentViewSet, basename='student-assignment')
-router.register(r'submissions', StudentSubmissionViewSet, basename='student-submission')
-router.register(r'grades', StudentGradeViewSet, basename='student-grade')
-router.register('assignments/professor/', AssignmentViewSet, basename='professor-assignment')
-router.register('exams/professor/', ExamViewSet, basename='professor-exam')
+router.register('assignments', StudentAssignmentViewSet, basename='student-assignment')
+router.register('submissions', StudentSubmissionViewSet, basename='student-submission')
+router.register('grades', StudentGradeViewSet, basename='student-grade')
+router.register('assignments/professor', AssignmentViewSet, basename='professor-assignment')
+router.register('exams/professor', ExamViewSet, basename='professor-exam')
 
 
 urlpatterns = [

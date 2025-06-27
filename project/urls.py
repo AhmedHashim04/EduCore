@@ -6,7 +6,7 @@ from rest_framework import permissions
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="College Management API",
+        title="EduCore CollegeSystem API",
         default_version='v1',
         description="API for College Management System",
         contact=openapi.Contact(email="admin@college.edu"),

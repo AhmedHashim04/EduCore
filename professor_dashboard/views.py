@@ -10,7 +10,6 @@ from courses.models import TermCourse
 from users.models import User
 from .serializers import (
 TermCourseSerializer,EnrollmentSerializer,
-AnnouncementSerializer, ResourceSerializer,
 CourseAnalyticsSerializer
 )
 from django.db.models import Count, Avg, Q, F
@@ -83,32 +82,3 @@ class ProfessorCourseViewSet(viewsets.ModelViewSet):
         serializer = CourseAnalyticsSerializer(data=data)
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data)
-
-class AnnouncementViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, ProfessorPermission]
-    serializer_class = AnnouncementSerializer
-    queryset = Announcement.objects.all()
-
-    def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user)
-
-    def get_queryset(self):
-        # Get announcements created by professor or targeted to professors
-        return Announcement.objects.filter(
-            Q(created_by=self.request.user) |
-            Q(target_audience='professors') |
-            Q(target_audience='all')
-        ).distinct().select_related('created_by', 'related_course')
-
-class ResourceViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, ProfessorPermission]
-    serializer_class = ResourceSerializer
-    queryset = AnnouncementAttachment.objects.all()
-
-    def perform_create(self, serializer):
-        serializer.save(uploaded_by=self.request.user)
-
-    def get_queryset(self):
-        return AnnouncementAttachment.objects.filter(
-            uploaded_by=self.request.user
-        ).select_related('course', 'uploaded_by')

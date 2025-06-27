@@ -5,6 +5,8 @@ from django.urls import reverse
 
 from users.models import User
 from django.utils import timezone
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -142,3 +144,4 @@ class AnnouncementStatsSerializer(serializers.Serializer):
     pending_acknowledgment = serializers.IntegerField()
     high_priority = serializers.IntegerField()
     expired = serializers.IntegerField()
+

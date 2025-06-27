@@ -12,12 +12,12 @@ from courses.models import TermCourse
 
 from .serializers import ( 
     AssignmentSerializer, ExamSerializer, 
-    ResourceSerializer, AnnouncementSerializer,
     AttendanceSerializer, StudentProfileSerializer,EnrollmentSerializer,
 
     
 )
 from users.permissions import StudentPermission
+
 class StudentDashboardView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated, StudentPermission]
     
@@ -86,48 +86,3 @@ class StudentAttendanceViewSet(viewsets.ReadOnlyModelViewSet):
         return Attendance.objects.filter(
             student=self.request.user
         ).select_related('course', 'course__course')
-
-#Student Announcements and Announcement Watched
-class AnnouncementViewSet(viewsets.ReadOnlyModelViewSet):
-    permission_classes = [permissions.IsAuthenticated, StudentPermission]
-    serializer_class = AnnouncementSerializer
-
-    def get_queryset(self):
-        student = self.request.user
-        return Announcement.objects.filter(
-            Q(target_audience='all') | 
-            Q(target_audience='students') |
-            Q(related_course__enrollment__student=student)
-        ).distinct().prefetch_related(
-            Prefetch(
-                'views',
-                queryset=AnnouncementView.objects.filter(user=student),
-                to_attr='student_views'
-            )
-        )
-    
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        student = request.user
-
-        # Mark as viewed
-        AnnouncementView.objects.get_or_create(
-            announcement=instance,
-            user=student,
-            defaults={'viewed_at': timezone.now()}
-        )
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
-
-class StudentResourceViewSet(viewsets.ReadOnlyModelViewSet):
-    permission_classes = [permissions.IsAuthenticated, StudentPermission]
-    serializer_class = ResourceSerializer
-    
-    def get_queryset(self):
-        student = self.request.user
-        return AnnouncementAttachment.objects.filter(
-            Q(is_public=True) |
-            Q(course__enrollment__student=student, access_level='student') |
-            Q(course__enrollment__student=student, access_level='ta')
-        ).distinct().select_related('course', 'course__course')

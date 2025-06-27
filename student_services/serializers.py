@@ -62,35 +62,10 @@ class ExamSerializer(serializers.ModelSerializer):
             'id', 'exam_type', 'title', 'date', 'total_points', 
             'course', 'course_name', 'grade', 'time_until', 'location'
         ]
-
-class ResourceSerializer(serializers.ModelSerializer):
-    course_name = serializers.CharField(source='course.course.name', read_only=True)
-    file_url = serializers.SerializerMethodField()
-    
-    def get_file_url(self, obj):
-        if obj.file:
-            return self.context['request'].build_absolute_uri(obj.file.url)
-        return None
-    
     class Meta:
         model = AnnouncementAttachment
         fields = ['announcement','file','original_filename','uploaded_at']
 
-class AnnouncementSerializer(serializers.ModelSerializer):
-    course_name = serializers.CharField(source='related_course.course.name', read_only=True, allow_null=True)
-    is_new = serializers.SerializerMethodField()
-    
-    def get_is_new(self, obj):
-        student = self.context['request'].user
-        last_view = student.announcement_views.filter(announcement=obj).first()
-        return not last_view or last_view.viewed_at < obj.updated_at
-    
-    class Meta:
-        model = Announcement
-        fields = [
-            'id', 'title', 'content', 'created_at', 
-            'is_important', 'course_name', 'is_new'
-        ]
 
 class AttendanceSerializer(serializers.ModelSerializer):
     course_name = serializers.CharField(source='course.course.name', read_only=True)
