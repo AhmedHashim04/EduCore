@@ -14,8 +14,7 @@
 
 ## 📸 Screenshots
 
-![Dashboard Screenshot](image.png)
-![alt text](image.png)
+![Swagger Screenshot](image.png)
 
 ---
 ## ✨ Features
