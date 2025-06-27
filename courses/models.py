@@ -18,6 +18,7 @@ class Course(models.Model):
     
     def __str__(self):
         return f"{self.course} - {self.semester}"
+
 class TermCourse(models.Model):
     """
     Represents a specific offering of a course in a given semester.
@@ -32,7 +33,7 @@ class TermCourse(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     credits = models.PositiveSmallIntegerField()
-    instructor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,limit_choices_to={'user_type': 2})
+    professor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,limit_choices_to={'user_type': 2})
     sections = models.ManyToManyField('Section', blank=True)
     capacity = models.PositiveSmallIntegerField()
     schedule = models.CharField(max_length=100, help_text="e.g., Mon/Wed 10:00-11:30")
@@ -71,3 +72,4 @@ class Section(models.Model):
     
     def __str__(self):
         return f"{self.classroom} - {self.staff}"
+    

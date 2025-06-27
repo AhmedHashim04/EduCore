@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import User
 from django.core.exceptions import ValidationError
+
 class Announcement(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -25,8 +26,6 @@ class Announcement(models.Model):
     
     def __str__(self):
         return self.title
-    
-
 
 class AnnouncementView(models.Model):
     announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE, related_name='views')
@@ -61,3 +60,5 @@ class AnnouncementAttachment(models.Model):
     
     def __str__(self):
         return f"Attachment for {self.announcement}"
+    
+    

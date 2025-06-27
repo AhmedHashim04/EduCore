@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Department(models.Model):
     name = models.CharField(max_length=100)
@@ -68,3 +69,4 @@ class Semester(models.Model):
     
     def __str__(self):
         return f"{self.get_semester_display()} {self.year}"
+

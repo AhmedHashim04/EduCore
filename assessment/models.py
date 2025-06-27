@@ -1,7 +1,8 @@
 from django.db import models
 from courses.models import TermCourse
 from users.models import User
-from django.core.validators import MinValueValidator, MaxValueValidator, RegexValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.exceptions import ValidationError
 
 class Assignment(models.Model):
     course = models.ForeignKey(TermCourse, on_delete=models.CASCADE, related_name='assignments')

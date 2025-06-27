@@ -9,6 +9,6 @@ class CourseAdmin(admin.ModelAdmin):
 
 @admin.register(TermCourse)
 class TermCourseAdmin(admin.ModelAdmin):
-    list_display = ('course', 'semester', 'instructor', 'is_active')
+    list_display = ('course', 'semester', 'professor', 'is_active')
     search_fields = ('course__code', 'course__title')
-    list_filter = ('semester', 'instructor', 'is_active')
+    list_filter = ('semester', 'professor', 'is_active')

@@ -6,6 +6,7 @@ from courses.models import TermCourse
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils import timezone
 from django.core.exceptions import ValidationError
+
 class Enrollment(models.Model):
     GRADE_CHOICES = (
         ('A', 'A'), ('A-', 'A-'), ('B+', 'B+'), ('B', 'B'), ('B-', 'B-'),
@@ -105,7 +106,6 @@ class StudentProfile(models.Model):
     
     def __str__(self):
         return f"{self.student}'s academic profile"
-
 
 class Attendance(models.Model):
     course = models.ForeignKey(TermCourse, on_delete=models.CASCADE, related_name='attendances')

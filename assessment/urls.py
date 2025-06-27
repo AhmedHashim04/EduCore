@@ -1,18 +1,27 @@
-from django.urls import path
+# urls.py (student)
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from .views import (
-    AssignmentListView, AssignmentDetailView,
-    SubmissionListView, SubmissionDetailView,
-    ExamListView, ExamDetailView,
-    GradeListView, GradeDetailView
+    AssignmentViewSet,
+    ExamViewSet,
+    GradeSubmissionView,
+    StudentAssignmentViewSet,
+    StudentSubmissionViewSet,
+    StudentGradeViewSet,
+
 )
 
+router = DefaultRouter()
+router.register(r'assignments', StudentAssignmentViewSet, basename='student-assignment')
+router.register(r'submissions', StudentSubmissionViewSet, basename='student-submission')
+router.register(r'grades', StudentGradeViewSet, basename='student-grade')
+router.register('assignments/professor/', AssignmentViewSet, basename='professor-assignment')
+router.register('exams/professor/', ExamViewSet, basename='professor-exam')
+
+
 urlpatterns = [
-    path('assignments/', AssignmentListView.as_view(), name='assignment-list'),
-    path('assignments/<int:pk>/', AssignmentDetailView.as_view(), name='assignment-detail'),
-    path('submissions/', SubmissionListView.as_view(), name='submission-list'),
-    path('submissions/<int:pk>/', SubmissionDetailView.as_view(), name='submission-detail'),
-    path('exams/', ExamListView.as_view(), name='exam-list'),
-    path('exams/<int:pk>/', ExamDetailView.as_view(), name='exam-detail'),
-    path('grades/', GradeListView.as_view(), name='grade-list'),
-    path('grades/<int:pk>/', GradeDetailView.as_view(), name='grade-detail'),
+    path('', include(router.urls)),
+    path('grade-submission/<int:pk>/', GradeSubmissionView.as_view(), name='grade-submission'),
 ]
+
+

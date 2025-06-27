@@ -1,7 +1,7 @@
 from django.utils import timezone
 from rest_framework import serializers
 from assessment.models import Assignment, Submission, Exam, Grade
-from notifications.models import Announcement, Resource
+from notifications.models import Announcement, AnnouncementAttachment
 from student_services.models import Enrollment, StudentProfile, Attendance
 from courses.models import TermCourse
 
@@ -73,12 +73,8 @@ class ResourceSerializer(serializers.ModelSerializer):
         return None
     
     class Meta:
-        model = Resource
-        fields = [
-            'id', 'title', 'resource_type', 'description', 
-            'course', 'course_name', 'file_url', 'url', 
-            'uploaded_at', 'access_level'
-        ]
+        model = AnnouncementAttachment
+        fields = ['announcement','file','original_filename','uploaded_at']
 
 class AnnouncementSerializer(serializers.ModelSerializer):
     course_name = serializers.CharField(source='related_course.course.name', read_only=True, allow_null=True)
@@ -102,36 +98,6 @@ class AttendanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendance
         fields = ['id', 'date', 'status', 'course', 'course_name', 'notes']
-
-class SubmissionSerializer(serializers.ModelSerializer):
-    assignment_title = serializers.CharField(source='assignment.title', read_only=True)
-    file_url = serializers.SerializerMethodField()
-    
-    def get_file_url(self, obj):
-        if obj.file:
-            return self.context['request'].build_absolute_uri(obj.file.url)
-        return None
-    
-    class Meta:
-        model = Submission
-        fields = [
-            'id', 'assignment', 'assignment_title', 'submitted_at', 
-            'text_entry', 'file_url', 'grade', 'feedback', 
-            'is_late', 'attempt_number'
-        ]
-
-class GradeSerializer(serializers.ModelSerializer):
-    course_name = serializers.CharField(source='exam.course.course.name', read_only=True)
-    exam_title = serializers.CharField(source='exam.title', read_only=True)
-    max_score = serializers.IntegerField(source='exam.total_points', read_only=True)
-    
-    class Meta:
-        model = Grade
-        fields = [
-            'id', 'exam', 'exam_title', 'course_name', 
-            'score', 'max_score', 'comments', 'published'
-        ]
-
 class StudentProfileSerializer(serializers.ModelSerializer):
     program_name = serializers.CharField(source='program.name', read_only=True)
     advisor_name = serializers.CharField(source='advisor.get_full_name', read_only=True)
@@ -144,11 +110,3 @@ class StudentProfileSerializer(serializers.ModelSerializer):
             'advisor', 'advisor_name', 'gpa', 
             'completed_credits', 'academic_status'
         ]
-
-class CourseEnrollmentSerializer(serializers.Serializer):
-    course_id = serializers.IntegerField()
-    
-    def validate_course_id(self, value):
-        if not TermCourse.objects.filter(id=value).exists():
-            raise serializers.ValidationError("Course does not exist")
-        return value

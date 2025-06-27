@@ -4,15 +4,14 @@ from rest_framework.permissions import IsAuthenticated, BasePermission
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from assessment.models import Assignment, Submission, Exam
-from notifications.models import Announcement, Resource
+from notifications.models import Announcement, AnnouncementAttachment
 from student_services.models import Enrollment, Attendance
 from courses.models import TermCourse
 from users.models import User
 from .serializers import (
 TermCourseSerializer,EnrollmentSerializer,
-AssignmentSerializer, ExamSerializer,
 AnnouncementSerializer, ResourceSerializer,
-SubmissionSerializer, CourseAnalyticsSerializer
+CourseAnalyticsSerializer
 )
 from django.db.models import Count, Avg, Q, F
 from django.utils import timezone
@@ -85,48 +84,6 @@ class ProfessorCourseViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data)
 
-class AssignmentViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, ProfessorPermission]
-    serializer_class = AssignmentSerializer
-    queryset = Assignment.objects.all()
-
-    def get_queryset(self):
-        return Assignment.objects.filter(
-            course__professor=self.request.user
-        ).select_related('course', 'course__semester')
-
-    def perform_create(self, serializer):
-        course = serializer.validated_data['course']
-        if course.professor != self.request.user:
-            return Response(
-                {"error": "You are not the professor for this course"},
-                status=status.HTTP_403_FORBIDDEN
-            )
-        assignment = serializer.save()
-
-        # Create empty submissions for all enrolled students
-        students = User.objects.filter(
-            enrollment__course=course,
-            enrollment__is_active=True
-        )
-        submissions = [
-            Submission(assignment=assignment, student=student)
-            for student in students
-        ]
-        Submission.objects.bulk_create(submissions)
-        
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-class ExamViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, ProfessorPermission]
-    serializer_class = ExamSerializer
-    queryset = Exam.objects.all()
-
-    def get_queryset(self):
-        return Exam.objects.filter(
-            course__professor=self.request.user
-        ).select_related('course', 'course__semester')
-
 class AnnouncementViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, ProfessorPermission]
     serializer_class = AnnouncementSerializer
@@ -146,29 +103,12 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
 class ResourceViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, ProfessorPermission]
     serializer_class = ResourceSerializer
-    queryset = Resource.objects.all()
+    queryset = AnnouncementAttachment.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(uploaded_by=self.request.user)
 
     def get_queryset(self):
-        return Resource.objects.filter(
+        return AnnouncementAttachment.objects.filter(
             uploaded_by=self.request.user
         ).select_related('course', 'uploaded_by')
-
-class GradeSubmissionView(generics.UpdateAPIView):
-    permission_classes = [IsAuthenticated, ProfessorPermission]
-    serializer_class = SubmissionSerializer
-    queryset = Submission.objects.all()
-    
-    def perform_update(self, serializer):
-        submission = self.get_object()
-        if submission.assignment.course.professor != self.request.user:
-            return Response(
-                {"error": "You are not authorized to grade this submission"},
-                status=status.HTTP_403_FORBIDDEN
-            )
-        serializer.save(
-            grader=self.request.user,
-            graded_at=timezone.now()
-        )

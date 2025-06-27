@@ -3,6 +3,8 @@ from rest_framework import serializers
 from .models import Announcement, AnnouncementView, AnnouncementComment, AnnouncementAttachment
 from django.urls import reverse
 
+from users.models import User
+from django.utils import timezone
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

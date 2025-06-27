@@ -1,7 +1,7 @@
 # serializers.py
 from rest_framework import serializers
 from assessment.models import Assignment, Submission, Exam
-from notifications.models import Announcement, Resource
+from notifications.models import Announcement, AnnouncementAttachment
 from student_services.models import Enrollment, StudentProfile
 from courses.models import TermCourse
 from users.models import User
@@ -29,17 +29,6 @@ class EnrollmentSerializer(serializers.ModelSerializer):
         model = Enrollment
         fields = ['id', 'student', 'enrollment_date', 'grade', 'is_active']
 
-class AssignmentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Assignment
-        fields = '__all__'
-        read_only_fields = ['created_at', 'updated_at']
-
-class ExamSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Exam
-        fields = '__all__'
-
 class AnnouncementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Announcement
@@ -48,14 +37,10 @@ class AnnouncementSerializer(serializers.ModelSerializer):
 
 class ResourceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Resource
+        model = AnnouncementAttachment
         fields = '__all__'
-        read_only_fields = ['uploaded_by', 'uploaded_at']
+        read_only_fields = [ 'uploaded_at']
 
-class SubmissionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Submission
-        fields = '__all__'
 
 class CourseAnalyticsSerializer(serializers.Serializer):
     course_id = serializers.IntegerField()
