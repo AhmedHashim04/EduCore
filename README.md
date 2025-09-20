@@ -322,8 +322,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## ✉️ Contact
 
 **Project Maintainer** – Ahmed Hashim  
-<div align="center">
-  <img src="https://contrib.rocks/image?repo=AhmedHashim04/college-management-api" />
-  <br/>
-  <sub>Made with ❤️ by [contrib.rocks](https://contrib.rocks)</sub>
-</div>
+
