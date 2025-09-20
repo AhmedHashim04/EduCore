@@ -17,8 +17,6 @@
 ![Dashboard Screenshot](image.png)
 
 ---
-## ✨ Features
-
 ## 📌 Features  
 
 ### 🔹 User Management  
@@ -50,6 +48,8 @@
 
 ### 🛡️ Rate Limiting  
 - Prevention of excessive requests and protection against violent attacks using django-ratelimit.
+
+
 ---
 
 ## 🔮 Upcoming Features
@@ -67,6 +67,9 @@
 - 🔎 Search & Filter System (courses, messages, assignments)
 - 🧑‍💼 Feedback & Rating System (students rate courses and instructors)
 - 🤖 AI-Powered Features (recommendations and plagiarism detection)
+- 🏛️ Academic Structure Management (Departments, Programs, Semesters)  
+- 📢 Announcements & Resource Sharing
+
 ---
 
 
@@ -187,28 +190,6 @@ python manage.py runserver
 | `GET`  | `/api/courses/me/{course_code}/assignments/{assignment_slug}/` | Retrieve details of a specific assignment |
 | `POST` | `/api/courses/me/{course_code}/assignments/{assignment_slug}/solution/` | Submit a solution for an assignment (Student only) |
 | `POST` | `/api/courses/me/{course_code}/assignments/{assignment_slug}/solution/{solution_id}/grade/` | Grade a submitted solution (Instructor only) |
-
-### 💬 Chat System  
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET`  | `/api/chat/` | List all chats for the user |
-| `POST` | `/api/chat/` | Create a new chat |
-| `GET`  | `/api/chat/{id}/` | Retrieve details of a specific chat |
-| `GET`  | `/api/chat/{chat_id}/messages/` | List all messages in a chat |
-| `POST` | `/api/chat/{chat_id}/messages/` | Send a message in a chat |
-
----
-
-- 🔐 Multi-role Authentication System (Admin, Professor, Student, Staff)  
-- 🏛️ Academic Structure Management (Departments, Programs, Semesters)  
-- 📚 Course Catalog & Offerings  
-- 📝 Assignment & Exam Management  
-- 🧮 Gradebook & Attendance Tracking  
-- 👨‍🎓 Student Profiles & Enrollment  
-- 👩‍🏫 Professor Dashboards  
-- 📢 Announcements & Resource Sharing  
-- 📖 Interactive API Documentation with Swagger & ReDoc  
 
 ---
 
